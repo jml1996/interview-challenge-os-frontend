@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 
 function Athlete(props){
     const classes = useStyles();
-    const {athleteInfo, id} = props
+    const {athleteInfo, id} = props;
 
     return(
         <StyledTruckCardContainer className={classes.main}>
@@ -29,7 +29,6 @@ function Athlete(props){
                         athleteInfo.profile_image ?
                         <CardMedia 
                             component="img"
-                            // onClick={() => addItem(mostLikely)}
                             src={`${athleteInfo.profile_image}`}
                             alt="athlete profile image"
                             style={{ maxWidth: 400 }}
