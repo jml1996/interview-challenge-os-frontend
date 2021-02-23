@@ -10,11 +10,19 @@ import Typography from '@material-ui/core/Typography';
 
 import styled from 'styled-components';
 
+const useStyles = makeStyles({
+    main: {
+        margin: '0 auto',
+        width: '80%',
+    },
+});
+
 function Athlete(props){
+    const classes = useStyles();
     const {athleteInfo, id} = props
 
     return(
-        <StyledTruckCardContainer>
+        <StyledTruckCardContainer className={classes.main}>
             <Card>
                 <CardActionArea>
                     {
@@ -84,7 +92,9 @@ function Athlete(props){
 export default Athlete;
 
 const StyledTruckCardContainer = styled.div`
-    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     img {
         width: 80%;
         display:block;

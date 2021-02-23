@@ -12,8 +12,8 @@ function Athletes(props) {
     }, []);
 
     return (
-        <div className="App">
-            <h3>Registered Athletes</h3>
+        <div style={{ textAlign: "center", marginBottom:0 }}>
+            <h2>Registered Athletes</h2>
             {
                 props.isLoading ? (
                     <div>Loading...</div>
