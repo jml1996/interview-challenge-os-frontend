@@ -30,7 +30,7 @@ function Athlete(props){
             <Card>
                 {
                     isEditing ?
-                    <EditAthleteForm id={athleteInfo._id} athleteInfo={athleteInfo} />
+                    <EditAthleteForm setIsEditing={setIsEditing} id={athleteInfo._id} athleteInfo={athleteInfo} />
                     :
                     <CardActionArea>
                         {
@@ -66,7 +66,7 @@ function Athlete(props){
                                     <div>Team: {athleteInfo.team}</div>
                                 }
                                 {
-                                    athleteInfo.sports !== [] ?
+                                    athleteInfo.sports.length > 0 ?
                                     <div>
                                         Sports: {
                                             athleteInfo.sports.map((sport, index) => {

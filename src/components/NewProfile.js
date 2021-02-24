@@ -52,7 +52,7 @@ const useStyles = makeStyles({
 
 
 function NewProfile(props) {
-    const history = useHistory();
+    // const history = useHistory();
     const classes = useStyles();
 
     const [formValues, setFormValues] = useState(initialFormValues);
@@ -82,6 +82,7 @@ function NewProfile(props) {
         };
         console.log(athleteInfo);
         props.postNewAthlete(athleteInfo);
+        props.history.push("/athletes");
         setFormValues(initialFormValues);
     }
   

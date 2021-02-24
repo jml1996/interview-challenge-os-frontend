@@ -52,7 +52,7 @@ const useStyles = makeStyles({
 
 function EditAthleteForm(props) {
     const oldInfo = props.athleteInfo
-    const id = props.id
+    const { id, setIsEditing } = props
     const history = useHistory();
     const classes = useStyles();
 
@@ -83,6 +83,7 @@ function EditAthleteForm(props) {
         };
         console.log(id);
         props.editAthlete(id, athleteInfo);
+        setIsEditing(false);
         setFormValues(initialFormValues);
     }
   
