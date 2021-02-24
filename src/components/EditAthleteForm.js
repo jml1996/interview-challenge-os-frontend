@@ -4,9 +4,8 @@ import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { connect } from "react-redux";
 
-import { postNewAthlete } from "./../actions";
+import { editAthlete } from "./../actions";
 
-import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
@@ -51,11 +50,13 @@ const useStyles = makeStyles({
 });
 
 
-function NewProfile(props) {
+function EditAthleteForm(props) {
+    const oldInfo = props.athleteInfo
+    const id = props.id
     const history = useHistory();
     const classes = useStyles();
 
-    const [formValues, setFormValues] = useState(initialFormValues);
+    const [formValues, setFormValues] = useState(oldInfo);
     const [formErrors, setFormErrors] = useState(initialFormErrors);
     const [disabled, setDisabled] = useState(initialDisabled);
     
@@ -80,8 +81,8 @@ function NewProfile(props) {
             interests: formValues.interests.trim(),
             // sports: formValues,
         };
-        console.log(athleteInfo);
-        props.postNewAthlete(athleteInfo);
+        console.log(id);
+        props.editAthlete(id, athleteInfo);
         setFormValues(initialFormValues);
     }
   
@@ -113,7 +114,7 @@ function NewProfile(props) {
         <Card className={classes.profileForm}>
             <StyledForm className='form container' onSubmit={formSubmit}>
                 <div className='form-group submit'>
-                <h2>New Athlete Info</h2>
+                {/* <h2>New Athlete Info</h2> */}
                 <div style={{color: "red"}} name="errors" className='errors'>
                     <div name="firstNameError">{formErrors.first_name}</div>
                     <div name="lastNameError">{formErrors.last_name}</div>
@@ -227,7 +228,7 @@ function NewProfile(props) {
     )
 }
 
-export default connect(null, { postNewAthlete })(NewProfile);
+export default connect(null, { editAthlete })(EditAthleteForm);
 
 const StyledCardContainer = styled.div`
     display: flex;

@@ -19,47 +19,35 @@ export const fetchAllAthletes = () => dispatch => {
         .catch(err => dispatch({type:API_FAIL, payload:err}));
 }
 
-// export const addPost = (newPost) => dispatch => {
-//     axiosWithAuth()
-//         .post("https://expatjournal2021.herokuapp.com/posts/", newPost)
-//         .then((res) => {
-//             console.log(res.data);
-//             dispatch({type:API_POST_ALL_POSTS_SUCCESS, payload:res.data});
-//         })
-//         .catch(err => dispatch({type:API_ALL_POSTS_FAIL, payload:err}));
-// }
+export const postNewAthlete = (athleteInfo) => dispatch => {
+    console.log(athleteInfo)
+    dispatch({type:API_START})
+    axios
+        .post("https://agile-dawn-86756.herokuapp.com/api/athlete", athleteInfo)
+        .then((res) => {
+            console.log(res.data)
+            dispatch({type:API_POST_SUCCESS, payload:res.data});
+        })
+        .catch(err => dispatch({type:API_FAIL, payload:err}))
+}
 
-// export const fetchMyPosts = (user_id) => dispatch => {
-//     dispatch({type:API_ALL_POSTS_START});
+export const editAthlete = (id, editedAthleteInfo) => dispatch => {
+    console.log(id)
+    axios
+        .put(`https://agile-dawn-86756.herokuapp.com/api/athlete/${id}`, editedAthleteInfo)
+        .then((res) => {
+            console.log(res.data)
+            dispatch({type:API_PUT_SUCCESS, payload:res.data});
+        })
+        .catch(err => dispatch({type:API_FAIL, payload:err}));
+}
 
-//     axiosWithAuth()
-//         .get(`https://expatjournal2021.herokuapp.com/${user_id}/posts/`)
-//         .then(res => {
-//             dispatch({type:API_GET_ALL_POSTS_SUCCESS, payload:res.data});
-//         })
-//         .catch(err => dispatch({type:API_ALL_POSTS_FAIL, payload:err}));
-// }
-
-// export const editPost = (id, editedPost) => dispatch => {
-    
-//     axiosWithAuth()
-//         .put(`https://expatjournal2021.herokuapp.com/posts/${id}`, editedPost)
-//         .then((res) => {
-//             dispatch({type:API_PUT_MY_POSTS_SUCCESS, payload:res.data});
-//         })
-//         .catch(err => dispatch({type:API_ALL_POSTS_FAIL, payload:err}));
-// }
-
-// export const deletePost = (id) => dispatch => {
-//     axiosWithAuth()
-//         .delete(`https://expatjournal2021.herokuapp.com/posts/${id}`)
-//         .then((res) => {
-//             dispatch({type:API_DELETE_MY_POST_SUCCESS, payload:id});
-//         })
-//         .catch(err => dispatch({type:API_ALL_POSTS_FAIL, payload:err}));
-// }
-
-// export const setCurrentUsername = () => {
-//     const currentUsernameLocalStorage = localStorage.getItem("currentUsernameLocalStorage");
-//     return {type:SET_CURRENT_USERNAME, payload:currentUsernameLocalStorage};
-// }
+export const deleteAthlete = (id) => dispatch => {
+    axios
+        .delete(`https://agile-dawn-86756.herokuapp.com/api/athlete/${id}`)
+        .then((res) => {
+            console.log(res.data)
+            dispatch({type:API_DELETE_SUCCESS, payload:id});
+        })
+        .catch(err => dispatch({type:API_FAIL, payload:err}));
+}

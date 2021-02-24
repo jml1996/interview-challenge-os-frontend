@@ -8,6 +8,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Athletes from './components/Athletes';
 
 import NavBar from './components/NavBar';
+import NewProfile from "./components/NewProfile";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           {/* <Route exact path="/" component={LoginForm} /> */}
           {/* <Route exact path="/register" component={RegisterForm} /> */}
           {/* <PrivateRoute path="/athletes" component={Athletes} /> */}
+          <Route path="/new-profile" component={NewProfile} />
           <Route path="/athletes" component={Athletes} />
         </Switch>
       </Router>

@@ -28,10 +28,10 @@ function Athletes(props) {
 }
 
 const mapStateToProps = (state) => {
-        return {
-            isLoading: state.isLoading,
-            allAthletes: state.allAthletes,
-        };
+    return {
+        isLoading: state.isLoading,
+        allAthletes: state.allAthletes,
     };
+};
 
 export default connect(mapStateToProps, { fetchAllAthletes })(Athletes);
