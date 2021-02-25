@@ -28,6 +28,4 @@ export default yup.object().shape({
     interests: yup
         .string()
         .nullable(true),
-    // sports: yup
-    //     .string(),
 });

@@ -1,15 +1,10 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { connect } from "react-redux";
-
 import { editAthlete } from "./../actions";
-
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
-
 import Validation from "./NewProfileValidation";
 
 const initialFormValues = {
@@ -53,7 +48,6 @@ const useStyles = makeStyles({
 function EditAthleteForm(props) {
     const oldInfo = props.athleteInfo
     const { id, setIsEditing } = props
-    const history = useHistory();
     const classes = useStyles();
 
     const [formValues, setFormValues] = useState(oldInfo);
@@ -62,7 +56,6 @@ function EditAthleteForm(props) {
     
     useEffect(() => {
         Validation.isValid(formValues).then((valid) => {
-            console.log(valid)
             setDisabled(!valid);
         });
     }, [formValues]);
@@ -81,7 +74,6 @@ function EditAthleteForm(props) {
             interests: formValues.interests.trim(),
             sports: formValues.sports,
         };
-        console.log(id);
         props.editAthlete(id, athleteInfo);
         setIsEditing(false);
         setFormValues(initialFormValues);

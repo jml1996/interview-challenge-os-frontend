@@ -7,18 +7,6 @@ import {
     API_FAIL
 } from '../actions';
 
-// name: "",
-// date_of_birth: "",
-// location: "",
-// team: "",
-// gender: "",
-// sports: [],
-// about: "",
-// profile_image: "",
-// interests: "",
-// isLoading: false,
-// error: ""
-
 export const initialState = {
     allAthletes: [],
     isLoading: false,
@@ -41,7 +29,6 @@ const reducer = (state = initialState, action) => {
                 error: ""
             });
         case(API_POST_SUCCESS):
-            console.log(action.payload);
             return({
                 ...state,
                 allAthletes: [...state.allAthletes, action.payload],
@@ -59,7 +46,6 @@ const reducer = (state = initialState, action) => {
                 error: ""
             });
         case(API_DELETE_SUCCESS):
-            console.log(action.payload)
             return({
                 ...state,
                 allAthletes: state.allAthletes.filter(ath => ath._id !== action.payload),

@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom";
 
 const NavBar = (props) => {
-
     return(
         <AppBar className="nav-bar" display="flex" position="static">
             <Toolbar>
@@ -25,4 +24,5 @@ const NavBar = (props) => {
         </AppBar>
     )
 }
+
 export default NavBar;
