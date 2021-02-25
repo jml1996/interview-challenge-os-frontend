@@ -43,6 +43,7 @@ export const editAthlete = (id, editedAthleteInfo) => dispatch => {
 }
 
 export const deleteAthlete = (id) => dispatch => {
+    console.log(id)
     axios
         .delete(`https://agile-dawn-86756.herokuapp.com/api/athlete/${id}`)
         .then((res) => {

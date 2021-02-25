@@ -1,17 +1,22 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
+import ReactDOM from 'react-dom';
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { connect } from "react-redux";
+// import MultiSelect from "react-multi-select-component";
+import MultiSelect from "@kenshooui/react-multi-select";
 
-import { postNewAthlete } from "./../actions";
-
+import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
 
+import { postNewAthlete } from "./../actions";
+
 import Validation from "./NewProfileValidation";
+import sports from './sports';
 
 const initialFormValues = {
     first_name: "",
@@ -50,15 +55,25 @@ const useStyles = makeStyles({
     },
 });
 
+const SearchWithControlledInput = ({ searchPlaceholder, onChange, value }) => {
+    return (
+      <TextField
+        value={value}
+        placeholder={searchPlaceholder}
+        onChange={onChange}
+      />
+    );
+};
 
 function NewProfile(props) {
-    // const history = useHistory();
     const classes = useStyles();
-
     const [formValues, setFormValues] = useState(initialFormValues);
     const [formErrors, setFormErrors] = useState(initialFormErrors);
     const [disabled, setDisabled] = useState(initialDisabled);
-    
+
+    console.log(formValues.sports)
+    // const sportOptions = sports;
+
     useEffect(() => {
         Validation.isValid(formValues).then((valid) => {
             console.log(valid)
@@ -78,7 +93,7 @@ function NewProfile(props) {
             about: formValues.about.trim(),
             profile_image: formValues.profile_image.trim(),
             interests: formValues.interests.trim(),
-            // sports: formValues,
+            sports: formValues.sports,
         };
         console.log(athleteInfo);
         props.postNewAthlete(athleteInfo);
@@ -109,6 +124,11 @@ function NewProfile(props) {
             });
         setFormValues({ ...formValues, [name]: value });
     };
+
+    const multiChange = evt => {
+        const value = evt.target.value
+        setFormValues({ ...formValues, sports: [...formValues.sports, value] });
+    }
   
     return (
         <Card className={classes.profileForm}>
@@ -221,7 +241,66 @@ function NewProfile(props) {
                     </label>
                     <br />
                     <br />
+                    <div>
+                    <label>
+                        Sports:
+                        <br />
+                        <select multiple={true} value={formValues.sports} onChange={multiChange}>
+                            <option value="Golf">Golf</option>
+                            <option value="Tennis">Tennis</option>
+                            <option value="Cricket">Cricket</option>
+                            <option value="Basketball">Basketball</option>
+                            <option value="Baseball">Baseball</option>
+                            <option value="American Football">American Football</option>
+                            <option value="Aquatics">Aquatics</option>
+                            <option value="Archery">Archery</option>
+                            <option value="Automobile Racing">Automobile Racing</option>
+                            <option value="Badminton">Badminton</option>
+                            <option value="Beach Volleyball">Beach Volleyball</option>
+                            <option value="Bobsleigh">Bobsleigh</option>
+                            <option value="Body Building">Body Building</option>
+                            <option value="Boxing">Boxing</option>
+                            <option value="Cross Country Running">Cross Country Running</option>
+                            <option value="Cross Country Skiing">Cross Country Skiing</option>
+                            <option value="Curling">Curling</option>
+                            <option value="Cycling">Cycling</option>
+                            <option value="Darts">Darts</option>
+                            <option value="Decathlon">Decathlon</option>
+                            <option value="Down Hill Skiing">Down Hill Skiing</option>
+                            <option value="Equestrianism">Equestrianism</option>
+                            <option value="eSports">eSports</option>
+                            <option value="Fencing">Fencing</option>
+                            <option value="Field Hockey">Field Hockey</option>
+                            <option value="Figure Skating">Figure Skating</option>
+                            <option value="Gymnastics">Gymnastics</option>
+                            <option value="Ice Hockey">Ice Hockey</option>
+                            <option value="Martial Arts">Martial Arts</option>
+                            <option value="Mixed Martial Arts">Mixed Martial Arts</option>
+                            <option value="Modern Pentathlon">Modern Pentathlon</option>
+                            <option value="Motorcycle Racing">Motorcycle Racing</option>
+                            <option value="Netball">Netball</option>
+                            <option value="Polo">Polo</option>
+                            <option value="Racquetball">Racquetball</option>
+                            <option value="Rowing">Rowing</option>
+                            <option value="Rugby">Rugby</option>
+                            <option value="Sailing">Sailing</option>
+                            <option value="Softball">Softball</option>
+                            <option value="Shooting">Shooting</option>
+                            <option value="Skateboarding">Skateboarding</option>
+                            <option value="Skeet Shooting">Skeet Shooting</option>
+                            <option value="Skeleton">Skeleton</option>
+                            <option value="Snow Boarding">Snow Boarding</option>
+                            <option value="Soccer (Football)">Soccer (Football)</option>
+                            <option value="Squash">Squash</option>
+                            <option value="Surfing">Surfing</option>
+                            <option value="Swimming">Swimming</option>
+                            <option value="Track and Field">Track and Field</option>
+                        </select>
+                    </label>
+                    <br />
+                    <br />
                     <button disabled={disabled}>Submit</button>
+                    </div>
                 </div>
             </StyledForm>
         </Card>

@@ -59,9 +59,10 @@ const reducer = (state = initialState, action) => {
                 error: ""
             });
         case(API_DELETE_SUCCESS):
+            console.log(action.payload)
             return({
                 ...state,
-                allPosts: state.allAthletes.filter(post => post._id !== action.payload),
+                allAthletes: state.allAthletes.filter(ath => ath._id !== action.payload),
                 isLoading: false,
                 error: ""
             });

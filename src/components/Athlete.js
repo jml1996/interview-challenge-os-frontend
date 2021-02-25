@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from "react-redux";
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -7,10 +9,11 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
 import EditAthleteForm from './EditAthleteForm';
 
 import styled from 'styled-components';
+
+import { deleteAthlete } from '../actions';
 
 const useStyles = makeStyles({
     main: {
@@ -21,9 +24,13 @@ const useStyles = makeStyles({
 
 function Athlete(props){
     const classes = useStyles();
-    const {athleteInfo, id} = props;
+    const { athleteInfo } = props;
     console.log(athleteInfo._id)
     const [isEditing, setIsEditing] = useState(false)
+
+    const deleteAthlete = () => {
+        props.deleteAthlete(athleteInfo._id)
+    }
 
     return(
         <StyledCardContainer className={classes.main}>
@@ -89,6 +96,9 @@ function Athlete(props){
                             <Button size="small" color="primary" onClick={() => setIsEditing(true)}>
                                 Edit
                             </Button>
+                            <Button size="small" color="primary" onClick={deleteAthlete}>
+                                Delete
+                            </Button>
                         </CardActions>
                     </CardActionArea>
                 }
@@ -97,7 +107,7 @@ function Athlete(props){
     )
 }
 
-export default Athlete;
+export default connect(null, { deleteAthlete })(Athlete);
 
 const StyledCardContainer = styled.div`
     display: flex;
