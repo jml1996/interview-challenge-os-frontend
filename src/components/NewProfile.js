@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom';
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { connect } from "react-redux";
-// import MultiSelect from "react-multi-select-component";
-import MultiSelect from "@kenshooui/react-multi-select";
 
 import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
@@ -16,7 +14,6 @@ import styled from 'styled-components';
 import { postNewAthlete } from "./../actions";
 
 import Validation from "./NewProfileValidation";
-import sports from './sports';
 
 const initialFormValues = {
     first_name: "",
@@ -55,24 +52,12 @@ const useStyles = makeStyles({
     },
 });
 
-const SearchWithControlledInput = ({ searchPlaceholder, onChange, value }) => {
-    return (
-      <TextField
-        value={value}
-        placeholder={searchPlaceholder}
-        onChange={onChange}
-      />
-    );
-};
 
 function NewProfile(props) {
     const classes = useStyles();
     const [formValues, setFormValues] = useState(initialFormValues);
     const [formErrors, setFormErrors] = useState(initialFormErrors);
     const [disabled, setDisabled] = useState(initialDisabled);
-
-    console.log(formValues.sports)
-    // const sportOptions = sports;
 
     useEffect(() => {
         Validation.isValid(formValues).then((valid) => {
@@ -95,7 +80,6 @@ function NewProfile(props) {
             interests: formValues.interests.trim(),
             sports: formValues.sports,
         };
-        console.log(athleteInfo);
         props.postNewAthlete(athleteInfo);
         props.history.push("/athletes");
         setFormValues(initialFormValues);
@@ -245,7 +229,7 @@ function NewProfile(props) {
                     <label>
                         Sports:
                         <br />
-                        <select multiple={true} value={formValues.sports} onChange={multiChange}>
+                        <select style={{width: "200px"}} multiple={true} value={formValues.sports} onChange={multiChange}>
                             <option value="Golf">Golf</option>
                             <option value="Tennis">Tennis</option>
                             <option value="Cricket">Cricket</option>
@@ -308,19 +292,6 @@ function NewProfile(props) {
 }
 
 export default connect(null, { postNewAthlete })(NewProfile);
-
-const StyledCardContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 10%
-    img {
-        width: 80%;
-        display:block;
-        margin:auto;
-        padding-top: 5%;
-    }
-`;
 
 const StyledForm = styled.form`
     input {

@@ -72,14 +72,14 @@ function EditAthleteForm(props) {
         const athleteInfo = {
             first_name: formValues.first_name.trim(),
             last_name: formValues.last_name.trim(),
-            date_of_birth: formValues.date_of_birth.trim(),
+            date_of_birth: formValues.date_of_birth,
             location: formValues.location.trim(),
             team: formValues.team.trim(),
             gender: formValues.gender.trim(),
             about: formValues.about.trim(),
             profile_image: formValues.profile_image.trim(),
             interests: formValues.interests.trim(),
-            // sports: formValues,
+            sports: formValues.sports,
         };
         console.log(id);
         props.editAthlete(id, athleteInfo);
@@ -90,6 +90,11 @@ function EditAthleteForm(props) {
     const changeHandler = evt => {
         const { name, value } = evt.target;
         formChange(name, value);
+    }
+
+    const multiChange = evt => {
+        const value = evt.target.value
+        setFormValues({ ...formValues, sports: [...formValues.sports, value] });
     }
 
     const formChange = (name, value) => {
@@ -219,6 +224,63 @@ function EditAthleteForm(props) {
                             name='interests'
                             type='text'
                         />
+                    </label>
+                    <br />
+                    <br />
+                    <label>
+                        Sports:
+                        <br />
+                        <select style={{width: "200px"}} multiple={true} value={formValues.sports} onChange={multiChange}>
+                            <option value="Golf">Golf</option>
+                            <option value="Tennis">Tennis</option>
+                            <option value="Cricket">Cricket</option>
+                            <option value="Basketball">Basketball</option>
+                            <option value="Baseball">Baseball</option>
+                            <option value="American Football">American Football</option>
+                            <option value="Aquatics">Aquatics</option>
+                            <option value="Archery">Archery</option>
+                            <option value="Automobile Racing">Automobile Racing</option>
+                            <option value="Badminton">Badminton</option>
+                            <option value="Beach Volleyball">Beach Volleyball</option>
+                            <option value="Bobsleigh">Bobsleigh</option>
+                            <option value="Body Building">Body Building</option>
+                            <option value="Boxing">Boxing</option>
+                            <option value="Cross Country Running">Cross Country Running</option>
+                            <option value="Cross Country Skiing">Cross Country Skiing</option>
+                            <option value="Curling">Curling</option>
+                            <option value="Cycling">Cycling</option>
+                            <option value="Darts">Darts</option>
+                            <option value="Decathlon">Decathlon</option>
+                            <option value="Down Hill Skiing">Down Hill Skiing</option>
+                            <option value="Equestrianism">Equestrianism</option>
+                            <option value="eSports">eSports</option>
+                            <option value="Fencing">Fencing</option>
+                            <option value="Field Hockey">Field Hockey</option>
+                            <option value="Figure Skating">Figure Skating</option>
+                            <option value="Gymnastics">Gymnastics</option>
+                            <option value="Ice Hockey">Ice Hockey</option>
+                            <option value="Martial Arts">Martial Arts</option>
+                            <option value="Mixed Martial Arts">Mixed Martial Arts</option>
+                            <option value="Modern Pentathlon">Modern Pentathlon</option>
+                            <option value="Motorcycle Racing">Motorcycle Racing</option>
+                            <option value="Netball">Netball</option>
+                            <option value="Polo">Polo</option>
+                            <option value="Racquetball">Racquetball</option>
+                            <option value="Rowing">Rowing</option>
+                            <option value="Rugby">Rugby</option>
+                            <option value="Sailing">Sailing</option>
+                            <option value="Softball">Softball</option>
+                            <option value="Shooting">Shooting</option>
+                            <option value="Skateboarding">Skateboarding</option>
+                            <option value="Skeet Shooting">Skeet Shooting</option>
+                            <option value="Skeleton">Skeleton</option>
+                            <option value="Snow Boarding">Snow Boarding</option>
+                            <option value="Soccer (Football)">Soccer (Football)</option>
+                            <option value="Squash">Squash</option>
+                            <option value="Surfing">Surfing</option>
+                            <option value="Swimming">Swimming</option>
+                            <option value="Track and Field">Track and Field</option>
+                        </select>
                     </label>
                     <br />
                     <br />
