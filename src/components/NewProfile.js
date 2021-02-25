@@ -62,15 +62,15 @@ function NewProfile(props) {
     const formSubmit = evt => {
         evt.preventDefault();
         const athleteInfo = {
-            first_name: formValues.first_name.trim(),
-            last_name: formValues.last_name.trim(),
-            date_of_birth: formValues.date_of_birth.trim(),
-            location: formValues.location.trim(),
-            team: formValues.team.trim(),
-            gender: formValues.gender.trim(),
-            about: formValues.about.trim(),
-            profile_image: formValues.profile_image.trim(),
-            interests: formValues.interests.trim(),
+            first_name: formValues.first_name,
+            last_name: formValues.last_name,
+            date_of_birth: formValues.date_of_birth,
+            location: formValues.location,
+            team: formValues.team,
+            gender: formValues.gender,
+            about: formValues.about,
+            profile_image: formValues.profile_image,
+            interests: formValues.interests,
             sports: formValues.sports,
         };
         props.postNewAthlete(athleteInfo);
